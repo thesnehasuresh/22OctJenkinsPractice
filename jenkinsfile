@@ -1,0 +1,31 @@
+pipeline{
+    tools{
+        jdk 'myjava'
+        maven 'mymaven'
+    }
+    agent none
+    
+    stages{
+        stage('Parallel Execution'){
+            parallel{
+stage('Clone a repo')
+        { agent any
+        steps{
+            git 'https://github.com/Sonal0409/DevOpsClassCodes.git'
+        }
+    }
+    stage('Package the code')
+    {
+        agent {label 'linux_slave'}
+        steps{
+            git 'https://github.com/Sonal0409/DevOpsClassCodes.git'
+            sh 'mvn package'
+        }
+    } 
+}
+            }
+        }
+        
+}
+    
+    
